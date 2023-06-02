@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
@@ -19,4 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('users/{email}', [ApiUserController::class, 'userget']);
+Route::get('/users/{email}', [ApiUserController::class, 'userget']);
+Route::post('/users', [ApiUserController::class, 'userpost']);
+Route::put('/users/{email}', [ApiUserController::class, 'userput']);
+Route::delete('/users/{email}', [ApiUserController::class, 'userdelete']);
