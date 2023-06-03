@@ -33,6 +33,12 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validate);
         }
 
+        // 유효성 체크 : validate 메소드를 써서 validate에 걸리면 처리 중단. API 사용시 이상한 값이 반환됨.
+        // $req->validate([
+        //     'email' => 'required|email|max:30'
+        //     ,'password' => 'required|min:8'
+        // ]);
+
         // 유저 정보 습득(쿼리빌더)
         $user = DB::select('select id, email, password from users where email = ?', [
             $req->email 
